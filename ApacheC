@@ -1,0 +1,82 @@
+#!/bin/bash
+# echo "Para usar esta herramientas necesitas instalar - youtube-dl y -ffmpeg "
+#INSTALACIÓN VIA APT (Debian y derivados del mismo)
+	#sudo apt install ffmpeg
+	#sudo apt install youtube-dl
+
+#INSTALACIÓN VIA PIP/PIP3
+#pip install yotube-dl o pip3 install youtube-dl
+
+lineas="===================================="
+red='\033[1;31m'                                        
+green='\033[1;32m'
+yellow='\033[1;33m'                                   
+blue='\033[1;34m'                                       
+magenta='\033[1;35m'                                    
+cyan='\033[1;36m'
+reset='\033[0m'
+printf $cyan
+v=1.0
+echo $lineas
+
+echo "┏━┓┏━┓┏━┓┏━╸╻ ╻┏━╸┏━┓┏━╸
+┣━┫┣━┛┣━┫┃  ┣━┫┣╸ ┏━┛┃  
+╹ ╹╹  ╹ ╹┗━╸╹ ╹┗━╸┗━╸┗━╸
+  
+"
+echo $v
+echo $lineas
+echo "El estado actual del servcio apache 2 es: _>"
+printf $red
+systemctl status apache2 | grep -i active
+printf $reset
+printf $cyan
+read -p "Que quieres hacer:
+ [1] Iniciar
+ [2] Detener
+ [3] Reiniciar 
+ [4] Salir " arch
+
+
+case $arch in
+	1)
+		echo $lineas
+		echo "Iniciar servicio Apache_> "		
+		sleep 0.5
+		sudo /etc/init.d/apache2 start
+		echo "Apache iniciado correctamente_> "
+		printf $red
+		systemctl status apache2 | grep -i active
+		printf $reset
+		printf $cyan
+		echo $lineas
+		;;
+	2)
+		echo $lineas
+		echo "Detener Apache _> "
+		sudo /etc/init.d/apache2 stop
+		echo "Apache iniciado correctamente_> "
+		printf $red
+		systemctl status apache2 | grep -i active
+		printf $reset
+		printf $cyan
+		echo $lineas
+		;;
+	3)
+		echo $lineas
+		echo "Reiniciar Apache_> "
+		sudo /etc/init.d/apache2 restart
+		echo "Apache reiniciardo correctamente_> "
+		printf $red
+		systemctl status apache2 | grep -i active
+		printf $reset
+		printf $cyan
+		echo $lineas
+		;;
+	[4]|*)
+		echo $lineas
+		echo "ADIOS"
+		echo $lineas
+esac
+		
+			
